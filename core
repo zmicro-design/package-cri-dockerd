@@ -30,7 +30,7 @@ install() {
   darwin)
     case $arch in
       amd64)
-        url="${PACKAGE_CORE_RELEASE_DOWNLOAD}/$PACKAGE_CORE_VERSION/${name}-${PACKAGE_CORE_VERSION#v}.${platform}.${arch}.tar.gz"
+        url="${PACKAGE_CORE_RELEASE_DOWNLOAD}/$PACKAGE_CORE_VERSION/${name}-${PACKAGE_CORE_VERSION#v}.${platform}.${arch}.tgz"
         ;;
       *)
         log::error "[$(timestamp)] unsupport arch: $arch"
@@ -41,10 +41,10 @@ install() {
   linux) 
     case $arch in
       arm64)
-        url="${PACKAGE_CORE_RELEASE_DOWNLOAD}/$PACKAGE_CORE_VERSION/${name}-${PACKAGE_CORE_VERSION#v}.${arch}.tar.gz"
+        url="${PACKAGE_CORE_RELEASE_DOWNLOAD}/$PACKAGE_CORE_VERSION/${name}-${PACKAGE_CORE_VERSION#v}.${arch}.tgz"
         ;;
       amd64)
-        url="${PACKAGE_CORE_RELEASE_DOWNLOAD}/$PACKAGE_CORE_VERSION/${name}-${PACKAGE_CORE_VERSION#v}.${arch}.tar.gz"
+        url="${PACKAGE_CORE_RELEASE_DOWNLOAD}/$PACKAGE_CORE_VERSION/${name}-${PACKAGE_CORE_VERSION#v}.${arch}.tgz"
         ;;
       *)
         log::error "[$(timestamp)] unsupport arch: $arch"
