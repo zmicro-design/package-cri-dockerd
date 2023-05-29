@@ -38,7 +38,7 @@ install() {
         ;;
     esac
     ;;
-  linux) ;;
+  linux) 
     case $arch in
       arm64)
         url="${PACKAGE_CORE_RELEASE_DOWNLOAD}/$PACKAGE_CORE_VERSION/${name}-${PACKAGE_CORE_VERSION#v}.${arch}.tar.gz"
@@ -51,6 +51,7 @@ install() {
         return 1
         ;;
     esac
+    ;;
   *)
     log::error "[$(timestamp)] unsupport platform: $platform"
     return 1
