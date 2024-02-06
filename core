@@ -92,6 +92,31 @@ install() {
   log::info "[$(timestamp)][package][$name] installing ..."
   os::install $source_bin_file $usr_bin_dir $name
 
+  if [ "$(os::has_command systemctl)" = "true" ]; then
+    local systemd_service_dir="/etc/systemd/system"
+    local systemd_service_file=$systemd_service_dir/cri-docker.service
+    local systemd_service_socket_file=$systemd_service_dir/cri-docker.socket
+    if [ ! -d "$systemd_service_dir" ]; then
+      sudo mkdir -p $systemd_service_dir
+    fi
+
+    local changed=false
+    if [ ! -f "$systemd_service_file" ]; then
+      changed=true
+      sudo cp $PACKAGE_DIR/conf/etc/systemd/system/cri-docker.service $systemd_service_dir
+    fi
+
+    if [ ! -f "$systemd_service_socket_file" ]; then
+      changed=true
+      sudo cp $PACKAGE_DIR/conf/etc/systemd/system/cri-docker.socket $systemd_service_dir
+    fi
+
+    if [ "$changed" = "true" ]; then
+      sudo systemctl daemon-reload
+      sudo systemctl enable --now cri-docker
+    fi
+  fi
+
   if [ "$PLUGIN_PACKAGE_INSTALL_MODE" != "test" ]; then
     # clean
     log::info "[$(timestamp)][package][$name] cleaning ..."
