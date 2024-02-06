@@ -25,31 +25,31 @@ install() {
   #   https://github.com/Mirantis/cri-dockerd/releases/download/v0.3.2/cri-dockerd-0.3.2.arm64.tgz
   # generate url
   local url=""
-  
+
   case $platform in
   darwin)
     case $arch in
-      amd64)
-        url="${PACKAGE_CORE_RELEASE_DOWNLOAD}/$PACKAGE_CORE_VERSION/${name}-${PACKAGE_CORE_VERSION#v}.${platform}.${arch}.tgz"
-        ;;
-      *)
-        log::error "[$(timestamp)] unsupport arch: $arch"
-        return 1
-        ;;
+    amd64)
+      url="${PACKAGE_CORE_RELEASE_DOWNLOAD}/$PACKAGE_CORE_VERSION/${name}-${PACKAGE_CORE_VERSION#v}.${platform}.${arch}.tgz"
+      ;;
+    *)
+      log::error "[$(timestamp)] unsupport arch: $arch"
+      return 1
+      ;;
     esac
     ;;
-  linux) 
+  linux)
     case $arch in
-      arm64)
-        url="${PACKAGE_CORE_RELEASE_DOWNLOAD}/$PACKAGE_CORE_VERSION/${name}-${PACKAGE_CORE_VERSION#v}.${arch}.tgz"
-        ;;
-      amd64)
-        url="${PACKAGE_CORE_RELEASE_DOWNLOAD}/$PACKAGE_CORE_VERSION/${name}-${PACKAGE_CORE_VERSION#v}.${arch}.tgz"
-        ;;
-      *)
-        log::error "[$(timestamp)] unsupport arch: $arch"
-        return 1
-        ;;
+    arm64)
+      url="${PACKAGE_CORE_RELEASE_DOWNLOAD}/$PACKAGE_CORE_VERSION/${name}-${PACKAGE_CORE_VERSION#v}.${arch}.tgz"
+      ;;
+    amd64)
+      url="${PACKAGE_CORE_RELEASE_DOWNLOAD}/$PACKAGE_CORE_VERSION/${name}-${PACKAGE_CORE_VERSION#v}.${arch}.tgz"
+      ;;
+    *)
+      log::error "[$(timestamp)] unsupport arch: $arch"
+      return 1
+      ;;
     esac
     ;;
   *)
